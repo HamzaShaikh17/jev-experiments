@@ -8,39 +8,13 @@ Instead of running every trace through an expensive reasoning model, this uses a
 
 ![Pipeline diagram](docs/images/pipeline-diagram.png)
 
-```mermaid
-flowchart TD
-    A[Agent Trace] --> B{Jev: Fast Filter}
-    B -->|investigate = No| C[Store & Move On]
-    B -->|investigate = Yes| D[LLM: Deep Analysis]
-    D --> E[Root Cause + Remediation]
 
-    style B fill:#fef3e0,stroke:#f9a825
-    style D fill:#e8f0fe,stroke:#4285f4
-    style C fill:#e8f5e9,stroke:#43a047
-    style E fill:#e8f5e9,stroke:#43a047
-```
 
 ### Notebook Flow
 
 ![Notebook flow diagram](docs/images/notebook-flow.png)
 
-```mermaid
-flowchart TD
-    S[Setup: Load API Keys] --> T[Generate 20 Synthetic Traces]
-    T --> EA[Experiment A: Run Traces Through Jev]
-    T --> EB[Experiment B: Run Traces Through Groq LLM]
-    EA --> CMP[Compare: Latency, Cost, Agreement, JSON Failures]
-    EB --> CMP
-    CMP --> CAS[Cascade: Jev Filters, LLM Only on Flagged Traces]
-    CAS --> DASH[Terminal Dashboard Summary]
 
-    style EA fill:#fef3e0,stroke:#f9a825
-    style EB fill:#e8f0fe,stroke:#4285f4
-    style CMP fill:#f3e5f5,stroke:#8e24aa
-    style CAS fill:#fef3e0,stroke:#f9a825
-    style DASH fill:#e8f5e9,stroke:#43a047
-```
 
 > The Mermaid blocks above render natively on GitHub — no image needed there. The `![...]` PNG placeholders above them are for platforms that don't render Mermaid (e.g. a blog post, a PDF export, or npm's package README viewer). Export each diagram as a PNG (e.g. via the [Mermaid Live Editor](https://mermaid.live)) and save it to the path shown, or delete the placeholder lines if you don't need them.
 
